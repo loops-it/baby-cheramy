@@ -29,8 +29,8 @@ export const upload = (req: Request, res: Response, next: Function) => {
 
             // Now you can process the uploaded file
             const blob = await put(file.originalname, file.buffer, { access: 'public',token:"vercel_blob_rw_zwlZpwVo4HyjTIgI_eHn3QlcoaEx2JgMrudUm3G5t3OJEJG" });
-
-            return res.json(blob);
+            console.log(blob)
+            res.render('uploadedFilePreview', { filename: file.originalname, blobUrl: blob.url });
         } catch (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
